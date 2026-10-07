@@ -1,0 +1,32 @@
+name: Futbolsport Monitor
+
+on:
+  schedule:
+    # Uruchamiaj co 15 minut
+    - cron: '*/15 * * * *'
+  workflow_dispatch: # Przycisk do ręcznego odpalenia testu
+
+jobs:
+  run-monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pobierz kod repozytorium
+        uses: actions/checkout@v4
+
+      - name: Skonfiguruj Pythona
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Zainstaluj biblioteki
+        run: pip install requests beautifulsoup4 urllib3
+
+      - name: Uruchom skrypt monitorujący
+        run: python futbolsport_monitor.py
+
+      - name: Zapisz aktualny stan
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add bot_stan.json
+          git diff --staged --quiet || (git commit -m "Aktualizacja stanu bota" && git push)
