@@ -22,6 +22,8 @@ jobs:
         run: pip install requests beautifulsoup4 urllib3
 
       - name: Uruchom skrypt monitorujący
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: python futbolsport_monitor.py
 
       - name: Zapisz aktualny stan
