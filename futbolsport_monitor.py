@@ -13,7 +13,7 @@ URL_TERMINARZ = "https://liga.futbolsport.pl/terminarz"
 URL_GALERIE = "https://liga.futbolsport.pl/galerie"
 
 NAZWA_DRUZYNY = "Canvas Logistics"
-TELEGRAM_BOT_TOKEN = "8827199378:AAFxeZ8dQxSQMxfniNEtPXihk6gaM4P-vLs"
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "8827199378:AAFxeZ8dQxSQMxfniNEtPXihk6gaM4P-vLs")
 TELEGRAM_CHAT_ID = "-5489569449"
 STATE_FILE = "bot_stan.json"
 
